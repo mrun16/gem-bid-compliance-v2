@@ -25,3 +25,6 @@ Thumbs.db
 .vscode/
 .idea/
 audit_trail.db
+
+
+frontend/.streamlit/secrets.toml
