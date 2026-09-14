@@ -15,8 +15,7 @@ from datetime import datetime
 import requests
 import streamlit as st
 
-BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
-
+BACKEND_URL = st.secrets.get("BACKEND_URL", os.environ.get("BACKEND_URL", "http://localhost:8000"))
 st.set_page_config(page_title="GeM Bid Compliance Verification", page_icon="🏛", layout="wide")
 
 st.markdown("""
