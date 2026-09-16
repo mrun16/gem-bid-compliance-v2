@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()  # no-op if there's no .env file present
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
 DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(__file__), "audit_trail.db"))
 MOCK_PORTAL_PATH = os.environ.get(
