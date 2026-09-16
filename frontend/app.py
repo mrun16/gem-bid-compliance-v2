@@ -395,6 +395,66 @@ st.markdown(
         color: #1c1c1c !important;
     }
 
+    /* ---------- FORCE LIGHT THEME ON REMAINING NATIVE WIDGETS ---------- */
+    /* Same root cause as the alert fix above: these components are still
+       rendering dark-mode colors on the light page. Covers widget labels
+       (radio/text_area/text_input/file_uploader), the text area itself,
+       both button styles, and the file uploader's internal text. */
+
+    div[data-testid="stWidgetLabel"] p,
+    div[data-testid="stWidgetLabel"] label {
+        color: #16303f !important;
+    }
+
+    div[role="radiogroup"] label p {
+        color: #16303f !important;
+    }
+
+    .stTextArea textarea {
+        background: #ffffff !important;
+        color: #16303f !important;
+    }
+
+    .stTextArea textarea::placeholder {
+        color: #8b98a3 !important;
+    }
+
+    .stButton > button {
+        background: #ffffff;
+        color: #0b3d66 !important;
+        border: 1px solid #cfd6dc !important;
+    }
+
+    .stButton > button p {
+        color: inherit !important;
+    }
+
+    .stButton > button[kind="primary"] {
+        background: #1268a3 !important;
+        color: #ffffff !important;
+        border: 0 !important;
+    }
+
+    .stButton > button[kind="primary"] p {
+        color: #ffffff !important;
+    }
+
+    div[data-testid="stFileUploader"] section {
+        background: #fafcfd !important;
+    }
+
+    div[data-testid="stFileUploader"] section span,
+    div[data-testid="stFileUploader"] section small,
+    div[data-testid="stFileUploader"] section div {
+        color: #16303f !important;
+    }
+
+    div[data-testid="stFileUploader"] button {
+        background: #ffffff !important;
+        color: #0b3d66 !important;
+        border: 1px solid #cfd6dc !important;
+    }
+
     </style>
     """,
     unsafe_allow_html=True,
