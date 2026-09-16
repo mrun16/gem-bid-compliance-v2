@@ -383,6 +383,18 @@ st.markdown(
         border-radius: 9px;
     }
 
+    /* ---------- ALERT TEXT FIX ---------- */
+    /* Forces readable dark text inside st.error / st.warning / st.info /
+       st.success boxes, regardless of the deployed theme's dark-mode
+       defaults (this is what was washing out to unreadable pale text
+       on Streamlit Cloud). */
+
+    div[data-testid="stAlert"] p,
+    div[data-testid="stAlert"] li,
+    div[data-testid="stAlert"] span {
+        color: #1c1c1c !important;
+    }
+
     </style>
     """,
     unsafe_allow_html=True,
