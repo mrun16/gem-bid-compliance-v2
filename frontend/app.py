@@ -28,7 +28,7 @@ import streamlit as st
 
 BACKEND_URL = st.secrets.get(
     "BACKEND_URL",
-    os.environ.get("BACKEND_URL", "http://localhost:8000"),
+    os.environ.get("BACKEND_URL", "https://gem-bid-compliance-v2.onrender.com")
 )
 
 st.set_page_config(
@@ -74,17 +74,8 @@ st.markdown(
         background: linear-gradient(135deg, #073763 0%, #0d5b91 55%, #1675ad 100%);
         padding: 2.2rem 2.5rem;
         border-radius: 18px;
-        margin-bottom: 1.4rem;
+        margin-bottom: 1.5rem;
         box-shadow: 0 8px 25px rgba(7, 55, 99, 0.16);
-    }
-
-    .hero-kicker {
-        color: #b9dfff;
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 1.2px;
-        text-transform: uppercase;
-        margin-bottom: 0.55rem;
     }
 
     .hero-title {
@@ -93,39 +84,6 @@ st.markdown(
         line-height: 1.15;
         font-weight: 750;
         margin: 0;
-    }
-
-    .hero-subtitle {
-        color: #e2f1fb;
-        font-size: 1rem;
-        margin-top: 0.7rem;
-        max-width: 850px;
-        line-height: 1.55;
-    }
-
-    .hero-note {
-        margin-top: 1rem;
-        color: #d7ecfa;
-        font-size: 0.84rem;
-    }
-
-    /* ---------- FEATURE CHIPS ---------- */
-
-    .chip-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 1rem 0 1.5rem 0;
-    }
-
-    .chip {
-        background: white;
-        border: 1px solid #dce4eb;
-        color: #244b68;
-        padding: 7px 13px;
-        border-radius: 20px;
-        font-size: 0.82rem;
-        font-weight: 600;
     }
 
     /* ---------- NOTICE ---------- */
@@ -172,8 +130,9 @@ st.markdown(
         background: white;
         border: 1px solid #dfe6ec;
         border-radius: 14px;
-        padding: 1.15rem 1.25rem 0.75rem 1.25rem;
-        min-height: 180px;
+        padding: 0.85rem 1.1rem 0.6rem 1.1rem;
+        min-height: 0;
+        margin-bottom: 0.4rem;
         box-shadow: 0 3px 12px rgba(21, 48, 72, 0.04);
     }
 
@@ -200,7 +159,7 @@ st.markdown(
         color: #6b7885;
         font-size: 0.82rem;
         line-height: 1.4;
-        margin: 0.5rem 0 0.8rem 0;
+        margin: 0.4rem 0 0.3rem 0;
     }
 
     /* ---------- PAN CARD ---------- */
@@ -457,40 +416,10 @@ def api_post(path, **kwargs):
 st.markdown(
     """
     <div class="hero">
-        <div class="hero-kicker">SIH26100 • GeM Procurement • MVP Demo V2</div>
         <div class="hero-title">
             AI-Powered Bid Compliance<br>
             Verification Platform
         </div>
-        <div class="hero-subtitle">
-            An intelligent decision-support system that checks bidder
-            eligibility, identifies inconsistencies and highlights compliance
-            risks before tender evaluation.
-        </div>
-        <div class="hero-note">
-            Final qualification or disqualification remains with the
-            Procurement Officer.
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-# ============================================================
-# FEATURE CHIPS
-# ============================================================
-
-st.markdown(
-    """
-    <div class="chip-row">
-        <div class="chip">⚙️ Rule Engine</div>
-        <div class="chip">🤖 AI Analysis</div>
-        <div class="chip">🏛️ Government Checks</div>
-        <div class="chip">🚩 Risk Detection</div>
-        <div class="chip">📜 Audit Trail</div>
-        <div class="chip">📄 PDF Report</div>
-        <div class="chip">🛡️ AI Guardrails</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -536,7 +465,6 @@ with tab1:
 
     st.markdown(
         """
-        <div class="section-label">Verification workflow</div>
         <div class="section-title">Check a bidder's compliance</div>
         <div class="section-description">
             Upload the tender and bidder submission, then provide the PAN
@@ -751,12 +679,12 @@ with tab1:
 
                         else:
 
-                            st.error(
-                                f"⚠️ {result.get(
-                                    'block_reason',
-                                    'Verification blocked.'
-                                )}"
+                            block_reason = result.get(
+                                "block_reason",
+                                "Verification blocked.",
                             )
+
+                            st.error(f"⚠️ {block_reason}")
 
                     else:
 
